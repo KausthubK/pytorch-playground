@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 import matplotlib.pyplot as plt
 
-########
-########   DATASET
-########
+"""
+DATASET
+"""
 
 X = torch.randn(100,1)*10
 y = X + 3*torch.randn(100,1)
@@ -13,9 +13,11 @@ plt.xlabel('X')
 plt.ylabel('y')
 plt.show()
 
-########
-########   CLASS
-########
+
+"""
+CLASS
+"""
+
 
 class LR(nn.Module):
     # __init__ is the constructor
