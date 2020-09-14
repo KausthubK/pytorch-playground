@@ -8,3 +8,8 @@ pytorch webpage tutorials/data/cifar-10-batches-py/data_batch_5
 pytorch webpage tutorials/data/cifar-10-batches-py/readme.html
 pytorch webpage tutorials/data/cifar-10-batches-py/test_batch
 pytorch webpage tutorials/data/cifar-10-python.tar.gz
+
+*.pth
+**.pth
+
+*/data/MNIST/
