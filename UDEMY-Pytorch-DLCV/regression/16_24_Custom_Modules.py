@@ -55,15 +55,44 @@ x = torch.tensor([[1.0], [2.0]])
 print(model.forward(x))
 
 
-def plot_fit(title, input_x1):
+def plot_fit(title):
     plt.title(title)
     m1, b1 = model.get_params()
-    y1 = m1*input_x1 + b1
-    plt.plot(input_x1, y1, 'r')
+    x1 = np.array([-30, 30])
+    y1 = m1*x1 + b1
+    plt.plot(x1, y1, 'r')
     plt.scatter(X, y)
     plt.show()
 
-
-x1 = np.array([-30, 30])
-plot_fit(title='Tutorial 16', input_x1=x1)
+plot_fit(title='Tutorial 16')
 # fit is pretty bad with this - need gradient descent on a loss function to fit properly
+
+
+print("____________________")
+print("Begin Training")
+print("____________________")
+# Training
+
+criterion = nn.MSELoss()
+optimizer = torch.optim.SGD(params=model.parameters(), lr=0.01)  # small LR reduces overstepping/divergence - too small means slow training
+epochs = 100  # too few can result in underfitting, too many can result in overfitting
+
+losses = []
+for i in range(epochs):
+    y_pred = model.forward(X)
+    loss = criterion(y_pred, y)
+    print("epoch: {}/{} | loss: {}".format(i+1, epochs, loss.item()))
+
+    losses.append(loss)
+    optimizer.zero_grad()  # set gradients to zero before optimization - since gradients accumulate
+    loss.backward()  # backpropagate loss
+    optimizer.step()  # update model parameters
+
+plt.figure()
+plt.plot(range(epochs), losses)
+plt.ylabel("Loss")
+plt.xlabel("Epoch")
+plt.title("Training Progress")
+plt.show()
+
+plot_fit(title="Trained Model")
