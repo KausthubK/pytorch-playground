@@ -10,11 +10,11 @@ print("Model Weight")
 print(model.weight)
 
 
-x = torch.tensor([[2.0], [3.3]])
+x = torch.tensor([[2.0], [3.3]])  # input x
 print("Model X:")
-print(model(x))
+print(model(x))  # passes x through model
 
 
-y = torch.tensor([[2.0], [3.3]])
-print("Model X:")
-print(model(x))
+y = torch.tensor([[1.5], [2.3]])  # input y
+print("Model Y:")
+print(model(y))
