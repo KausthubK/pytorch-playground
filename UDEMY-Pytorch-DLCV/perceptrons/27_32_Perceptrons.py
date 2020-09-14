@@ -101,7 +101,7 @@ plt.show()
 
 plot_fit(title="Tutorial 27 - Trained Model")
 
-
+0
 # Testing
 print("____________________")
 print("Begin Testing")
