@@ -42,12 +42,16 @@ transform_val = transforms.Compose([transforms.Resize((224, 224)),
 training_dataset = datasets.ImageFolder('./ants_and_bees-master/train', transform=transform_train)
 validation_dataset = datasets.ImageFolder('./ants_and_bees-master/val', transform=transform_val)
 
-training_loader = torch.utils.data.DataLoader(training_dataset, batch_size=1, shuffle=True)
-validation_loader = DataLoader(dataset=validation_dataset, batch_size=11, shuffle=False)
+training_loader = DataLoader(training_dataset, batch_size=1, shuffle=True)
+validation_loader = DataLoader(dataset=validation_dataset, batch_size=1, shuffle=False)
 
 print("Num. Training Images: {}".format(len(training_dataset)))
 print("Num. Validation Images: {}".format(len(validation_dataset)))
 
+img_0, lab_0 = training_dataset[0]
+print(type(img_0))
+print(type(lab_0))
+print(lab_0)
 classes = ('ants', 'bees')
 
 model = models.alexnet(pretrained=True)
@@ -86,10 +90,15 @@ for e in range(epochs):
     running_corrects = 0.0
     print('')
     for images, labels in tqdm(training_loader, desc='Training Epoch {}'.format(e+1)):
+        # print(type(images))
+        # print("labels: {}".format(labels))
+
         inputs = images.to(device)  # set this to device
         labels = labels.to(device)  # set this to device
 
         outputs = model(inputs)  # infer
+        print(labels)
+        print(outputs)
         loss = criterion(outputs, labels)  # calculate loss
 
         # model update

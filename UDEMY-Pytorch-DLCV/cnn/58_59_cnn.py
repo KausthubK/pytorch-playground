@@ -73,7 +73,7 @@ print(model)
 
 # Training
 print("____________________")
-print("Begin Training on CPU")
+print("Begin Training on GPU")
 print("____________________")
 
 criterion = nn.CrossEntropyLoss()
@@ -106,6 +106,7 @@ for e in range(epochs):
         epoch_loss = running_loss/len(training_loader)
         epoch_accuracy = float(running_corrects) / len(training_loader)
         running_loss_history.append(epoch_loss)
+        running_corrects_history.append(epoch_accuracy)
         print('epoch: {}/{} | training loss: {:4f} | accuracy: {:4f}'.format(e+1, epochs, epoch_loss, epoch_accuracy))
 
 print("Training Complete... saving model...", end='')
